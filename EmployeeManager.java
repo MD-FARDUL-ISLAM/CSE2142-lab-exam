@@ -8,7 +8,7 @@ public class EmployeeManager {
         try {
             BufferedReader r = new BufferedReader(
                     new InputStreamReader(
-                            new FileInputStream("employees.txt")));
+                            new FileInputStream(Constants.FILE_NAME)));
             String line = r.readLine();
             return line;
         } catch (Exception e) {
@@ -19,7 +19,7 @@ public class EmployeeManager {
     public static void writeFile(String data) {
         try {
             BufferedWriter w = new BufferedWriter(
-                    new FileWriter("employees.txt"));
+                    new FileWriter(Constants.FILE_NAME));
             w.write(data);
             w.close();
         } catch (Exception e) {
@@ -33,7 +33,6 @@ public class EmployeeManager {
             return;
         }
 
-        // Check arguments
         if (args[0].equals("l")) {
             System.out.println("Loading data ...");
 
@@ -130,3 +129,5 @@ public class EmployeeManager {
         }
     }
 }
+//replacing Constants.FILE_NAME with "employees.txt"
+// neww Constants.java file created
