@@ -9,8 +9,7 @@ public class EmployeeManager {
             BufferedReader r = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(Constants.FILE_NAME)));
-            String line = r.readLine();
-            return line;
+            return r.readLine();
         } catch (Exception e) {
         }
         return null;
@@ -36,9 +35,7 @@ public class EmployeeManager {
         if (args[0].equals("l")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            String employees[] = line.split(",");
-            for (String emp : employees) {
+            for (String emp : readFile().split(",")) {
                 System.out.println(emp);
             }
 
@@ -46,31 +43,24 @@ public class EmployeeManager {
         } else if (args[0].equals("s")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            System.out.println(line);
-            String employees[] = line.split(",");
+            String[] employees = readFile().split(",");
             Random rand = new Random();
-            int randomIndex = rand.nextInt(employees.length);
-            System.out.println(employees[randomIndex]);
+            System.out.println(employees[rand.nextInt(employees.length)]);
 
             System.out.println("Data Loaded.");
         } else if (args[0].contains("+")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            String name = args[0].substring(1);
-            line = line + ", " + name;
-
-            writeFile(line);
+            writeFile(readFile() + ", " + args[0].substring(1));
 
             System.out.println("Data Loaded.");
         } else if (args[0].contains("?")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            String employees[] = line.split(",");
-            boolean found = false;
+            String[] employees = readFile().split(",");
             String searchName = args[0].substring(1);
+            boolean found = false;
+
             for (int i = 0; i < employees.length && !found; i++) {
                 if (employees[i].equals(searchName)) {
                     System.out.println("Employee found!");
@@ -82,8 +72,7 @@ public class EmployeeManager {
         } else if (args[0].contains("c")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            char[] chars = line.toCharArray();
+            char[] chars = readFile().toCharArray();
             boolean inWord = false;
             int count = 0;
             for (char ch : chars) {
@@ -102,9 +91,9 @@ public class EmployeeManager {
         } else if (args[0].contains("u")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            String employees[] = line.split(",");
+            String[] employees = readFile().split(",");
             String name = args[0].substring(1);
+
             for (int i = 0; i < employees.length; i++) {
                 if (employees[i].equals(name)) {
                     employees[i] = "Updated";
@@ -117,10 +106,8 @@ public class EmployeeManager {
         } else if (args[0].contains("d")) {
             System.out.println("Loading data ...");
 
-            String line = readFile();
-            String employees[] = line.split(",");
             String name = args[0].substring(1);
-            List<String> list = new ArrayList<>(Arrays.asList(employees));
+            List<String> list = new ArrayList<>(Arrays.asList(readFile().split(",")));
             list.remove(name);
 
             writeFile(String.join(",", list));
@@ -129,5 +116,4 @@ public class EmployeeManager {
         }
     }
 }
-//replacing Constants.FILE_NAME with "employees.txt"
-// neww Constants.java file created
+//Eliminated unnecessary temporary variables
