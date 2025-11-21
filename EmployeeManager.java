@@ -72,20 +72,9 @@ public class EmployeeManager {
         } else if (args[0].contains("c")) {
             System.out.println("Loading data ...");
 
-            char[] chars = readFile().toCharArray();
-            boolean inWord = false;
-            int count = 0;
-            for (char ch : chars) {
-                if (ch == ' ') {
-                    if (!inWord) {
-                        count++;
-                        inWord = true;
-                    } else {
-                        inWord = false;
-                    }
-                }
-            }
-            System.out.println(count + " word(s) found " + chars.length);
+            String data = readFile();
+            String[] words = data.trim().split("\\s+");
+            System.out.println(words.length + " word(s) found " + data.length());
 
             System.out.println("Data Loaded.");
         } else if (args[0].contains("u")) {
@@ -116,3 +105,4 @@ public class EmployeeManager {
         }
     }
 }
+//Simplify the logic for counting words. 
