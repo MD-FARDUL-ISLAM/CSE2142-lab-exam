@@ -102,7 +102,8 @@ public class EmployeeManager {
             writeFile(String.join(",", list));
 
             System.out.println("Data Deleted.");
+        } else {
+            System.out.println("Invalid argument. Application terminated.");
         }
     }
 }
-//Simplify the logic for counting words. 
