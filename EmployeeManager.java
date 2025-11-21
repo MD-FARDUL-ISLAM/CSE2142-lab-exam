@@ -59,13 +59,13 @@ public class EmployeeManager {
 
             String[] employees = readFile().split(",");
             String searchName = args[0].substring(1);
-            boolean found = false;
 
-            for (int i = 0; i < employees.length && !found; i++) {
-                if (employees[i].equals(searchName)) {
-                    System.out.println("Employee found!");
-                    found = true;
-                }
+            boolean exists = Arrays.asList(employees).contains(searchName);
+
+            if (exists) {
+                System.out.println("Employee found!");
+            } else {
+                System.out.println("Employee not found.");
             }
 
             System.out.println("Data Loaded.");
@@ -116,4 +116,3 @@ public class EmployeeManager {
         }
     }
 }
-//Eliminated unnecessary temporary variables
